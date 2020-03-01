@@ -40,10 +40,6 @@ public class UserController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String service = req.getParameter("service");
-		// 根据service 调用相关方法
-//		if(StrUtil.equals("login", service)) {
-//			login(req,resp);
-//		}
 		try {
 			Method method  = this.getClass().getDeclaredMethod(service, HttpServletRequest.class,HttpServletResponse.class);
 			method.invoke(this, req,resp);
