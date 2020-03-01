@@ -22,12 +22,8 @@ import com.sxt.util.RespWriter;
 
 import cn.hutool.core.util.StrUtil;
 
-/**
- * @ClassName: LoginFilter 
- * @Description: 登录拦截器 
- * @author: Mr.T
- * @date: 2020年2月25日 上午11:18:26
- */
+
+
 @WebFilter(urlPatterns = {"*.do","*.jsp"})
 public class LoginFilter implements Filter {
 
@@ -41,11 +37,11 @@ public class LoginFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) arg0;
 		HttpServletResponse resp = (HttpServletResponse) arg1;
-		//获取session
+		//get session
 		HttpSession session = req.getSession();
-		//从session中获取当前用户  从而判断用户是否登录
+		//check whether user has logged in 
 		Object user = session.getAttribute(Constant.KEY_CURRENT_USER);
-		//如果用户已经登录  则直接放行
+		// if having logged in, then let it pass
 		if(user != null ) {
 			//从自定义缓存中 获取当前用户  若都存在 则说明 用户状态正常
 			CUser u = (CUser) user;
@@ -56,11 +52,10 @@ public class LoginFilter implements Filter {
 				return;
 			}
 		}
-		//获取请求地址:
-		String uri = req.getRequestURI();
-		//验证码   登录请求   
+		//get request url
+		String uri = req.getRequestURI();   
 		String service = req.getParameter("service");
-		//验证码 放行
+		//checkcode page
 		if(uri.endsWith("checkCode.do")) {
 			chain.doFilter(req, resp);
 			return;

@@ -10,12 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-/**
- * @ClassName: CharsetFilter 
- * @Description: 登录拦截器 
- * @author: Mr.T
- * @date: 2020年2月25日 上午11:18:26
- */
+
 @WebFilter(urlPatterns = {"*.do","*.jsp"})
 public class CharsetFilter implements  Filter{
 
