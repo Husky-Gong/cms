@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>修改头像</title>
+<title>Update Profile</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css">
 </head>
 <body>

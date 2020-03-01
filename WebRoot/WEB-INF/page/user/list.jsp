@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>用户列表</title>
+<title>User List</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css">
 </head>
 <body>
@@ -14,24 +14,24 @@
 		<!-- 一排3个 -->
 		<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">账号</label>
+				<label class="layui-form-label">Username</label>
 				<div class="layui-input-inline">
-					<input id="userName" class="layui-input" placeholder="账号" />
+					<input id="userName" class="layui-input" placeholder="Username" />
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">姓名</label>
+				<label class="layui-form-label">Name</label>
 				<div class="layui-input-inline">
-					<input id="realName"  class="layui-input" placeholder="账号" />
+					<input id="realName"  class="layui-input" placeholder="Name" />
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">角色</label>
+				<label class="layui-form-label">Role</label>
 				<div class="layui-input-inline">
 					<select id="type">
-						<option value="">用户角色</option>
-						<option value="2">业务员</option>
-						<option value="1">管理员</option>
+						<option value="">Role</option>
+						<option value="2">Operator</option>
+						<option value="1">Manager</option>
 					</select>
 				</div>
 			</div>
@@ -39,31 +39,31 @@
 		<!-- 一排3个 -->
 		<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">时间</label>
+				<label class="layui-form-label">Date</label>
 				<div class="layui-input-inline" style="width: 84px;">
-					<input id="minCreateTime" class="layui-input" placeholder="最小时间" style="padding-left:5px" />
+					<input id="minCreateTime" class="layui-input" placeholder="from" style="padding-left:5px" />
 				</div>
 				<div class="layui-form-mid">-</div>
 				<div class="layui-input-inline" style="width: 84px;">
-					<input id="maxCreateTime" class="layui-input" placeholder="最大时间" style="padding-left:5px"/>
+					<input id="maxCreateTime" class="layui-input" placeholder="to" style="padding-left:5px"/>
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">状态</label>
+				<label class="layui-form-label">Status</label>
 				<div class="layui-input-inline">
 					<select id="isDel">
-						<option value="">用户状态</option>
-						<option value="1">有效</option>
-						<option value="2">无效</option>
+						<option value="">User status</option>
+						<option value="1">Valid</option>
+						<option value="2">Invalid</option>
 					</select>
 				</div>
 			</div>
 			<div class="layui-inline">
 				<div class="layui-input-inline" style="width: 90px;">
-					<button type="button" class="layui-btn" id="searchBtn"><i class="layui-icon layui-icon-search"></i>搜索</button>
+					<button type="button" class="layui-btn" id="searchBtn"><i class="layui-icon layui-icon-search"></i>Search</button>
 				</div>
 				<div class="layui-input-inline">
-					<button class="layui-btn  layui-btn-primary" type="reset"><i class="layui-icon layui-icon-refresh-1"></i>重置</button>
+					<button class="layui-btn  layui-btn-primary" type="reset"><i class="layui-icon layui-icon-refresh-1"></i>Reset</button>
 				</div>
 			</div>
 		</div>
@@ -74,16 +74,16 @@
 <!-- 头工具栏 -->
 <script type="text/html" id="headerBtns">
 	<div class="layui-btn-group">
-		<button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-1"></i>新增</button>
-		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</button>
+		<button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-1"></i>Add</button>
+		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i>Delete</button>
 	</div>
 </script>
 <!-- 行工具栏 -->
 <script type="text/html" id="rowBtns">
-	<button class="layui-btn layui-btn-sm" lay-event="reset"><i class="layui-icon layui-icon-about"></i>重置密码</button>
+	<button class="layui-btn layui-btn-sm" lay-event="reset"><i class="layui-icon layui-icon-about"></i>Reset Password</button>
 	
 	{{# if(d.isDel == 2){ }}
-		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="enable"><i class="layui-icon layui-icon-edit"></i>启用</button>
+		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="enable"><i class="layui-icon layui-icon-edit"></i>Activate</button>
 	{{# } }}		
 	
 </script>
@@ -94,28 +94,28 @@
 <!-- form 容器已定义好 -->
 <form class="layui-form layui-form-pane" lay-filter="formFilter">
 	<div class="layui-form-item">
-		<label class="layui-form-label">用户名</label>
+		<label class="layui-form-label">Username</label>
 		<div class="layui-input-inline">
-			<input name="userName" class="layui-input" placeholder="用户名" lay-varify="required" lay-reqText="请输入用户名" />
+			<input name="userName" class="layui-input" placeholder="Username" lay-varify="required" lay-reqText="Input username" />
 		</div>
 	</div>
 	<div class="layui-form-item">
-		<label class="layui-form-label">密码</label>
+		<label class="layui-form-label">Password</label>
 		<div class="layui-input-inline">
 			<input name="password" readonly   value="123456" class="layui-input"  />
 		</div>
 	</div>
 	<div class="layui-form-item">
-		<label class="layui-form-label">姓名</label>
+		<label class="layui-form-label">Name</label>
 		<div class="layui-input-inline">
-			<input name="realName" class="layui-input" placeholder="姓名" lay-varify="required" lay-reqText="请输入用户姓名" />
+			<input name="realName" class="layui-input" placeholder="Name" lay-varify="required" lay-reqText="Input name" />
 		</div>
 	</div>
 	<div class="layui-form-item">
-		<label class="layui-form-label">用户角色</label>
+		<label class="layui-form-label">Role</label>
 		<div class="layui-input-block">
-			<input type="radio" name="type" value="2" title="业务员"/>
-			<input type="radio" name="type" value="1" title="管理员"/>
+			<input type="radio" name="type" value="2" title="Operator"/>
+			<input type="radio" name="type" value="1" title="Manager"/>
 		</div>
 	</div>
 	<button type="button" id="submitBtn" lay-submit lay-filter="submitBtnFilter" class="display:none"></button>
@@ -165,26 +165,26 @@
 			},
 			cols:[[//数据表头
 				{type:'checkbox'},
-				{field:'id',title:'用户ID',width:'85'},
-				{field:'userName',title:'用户账号',width:'110'},
-				{field:'realName',title:'用户名称',width:'110'},
-				{field:'type',title:'用户类型',width:'100',templet:function(d){
+				{field:'id',title:'User ID',width:'85'},
+				{field:'userName',title:'Username',width:'110'},
+				{field:'realName',title:'Name',width:'110'},
+				{field:'type',title:'Type',width:'100',templet:function(d){
 					if(d.type == 1){
-						return "<b style='color:green'>管理员</b>";
+						return "<b style='color:green'>Manager</b>";
 					}else if(d.type == 2){
-						return "<b style='color:red'>业务员</b>";
+						return "<b style='color:red'>Operator</b>";
 					}
 				}},
-				{field:'isDel',title:'用户状态',width:'100',templet:function(d){
+				{field:'isDel',title:'Status',width:'100',templet:function(d){
 					if(d.isDel == 1){
-						return "<b style='color:green'>有效</b>";
+						return "<b style='color:green'>Valid</b>";
 					}else if(d.isDel == 2){
-						return "<b style='color:gray'>无效</b>";
+						return "<b style='color:gray'>Invalid</b>";
 					}
 				}},
-				{field:'createTime',title:'创建时间',width:'160'},
-				{field:'modifyTime',title:'修改时间',width:'160'},
-				{title:'操作',toolbar:'#rowBtns',fixed:'right',width:'270'}
+				{field:'createTime',title:'Create time',width:'160'},
+				{field:'modifyTime',title:'Modify time',width:'160'},
+				{title:'Operation',toolbar:'#rowBtns',fixed:'right',width:'270'}
 			]]
 		});
 		//搜索按钮事件
@@ -223,10 +223,10 @@
 		function add(){
 			layer.open({
 				type:1,//html
-				title:'新增用户',
+				title:'Add user',
 				content:$("#addTpl").html(),//弹层内容
 				area:['400px','400px'],//宽高
-				btn:['确认','取消'],
+				btn:['submit','cancel'],
 				btnAlign:'c',//按钮居中
 				btn1:function(index,layero){//点击确认时触发的方法
 					//点击确认时 提交form表单 
@@ -264,11 +264,11 @@
 			var data = checkStatus.data;
 			//如果没有数据被选中 则提示要先选中数据
 			if(data == null || data.length == 0){
-				layer.alert("请先选中需要删除的数据",{icon:7});
+				layer.alert("Select data to delete!",{icon:7});
 				return false;
 			}
 			//删除的二次确认
-			layer.confirm("你确定要删除吗?",{icon:5},function(index){
+			layer.confirm("Please Confirm",{icon:5},function(index){
 				//将需要删除的数据的ID 传给后  将这些数据的有效状态修改为无效
 				//一种使用普通的表单格式   一种还可以使用json 数据进行传输
 				var param = "";
@@ -306,7 +306,7 @@
 		//--重置密码-----------------------------
 		function resetPwd(data){
 			//使用二次确认
-			layer.confirm("确定要重置密码吗?",function(index){
+			layer.confirm("Please Confirm",function(index){
 				//将需要重置的用户ID 传给后台
 				$.post("user.do?service=reset",{id:data.id},function(rs){
 					//校验业务码
@@ -315,7 +315,7 @@
 						layer.msg(rs.msg);
 						return false;
 					}
-					layer.msg("重置成功");
+					layer.msg("Reset successfully!");
 					//关闭弹出层
 					layer.close(index);
 					//重载数据列表
@@ -326,7 +326,7 @@
 		//--使用户信息生效-----------------------------
 		function enable(data){
 			//使用二次确认
-			layer.confirm("确定启用该数据吗?",function(index){
+			layer.confirm("Comfirm to activate",function(index){
 				//将需要重置的用户ID 传给后台
 				$.post("user.do?service=enable",{id:data.id},function(rs){
 					//校验业务码
@@ -335,7 +335,7 @@
 						layer.msg(rs.msg);
 						return false;
 					}
-					layer.msg("启用成功");
+					layer.msg("Done!");
 					//关闭弹出层
 					layer.close(index);
 					//重载数据列表
