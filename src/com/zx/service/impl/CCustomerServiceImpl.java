@@ -35,7 +35,6 @@ public class CCustomerServiceImpl implements ICCustomerService {
 	@Override
 	public Result updateCustomer(String id, String custName, String custCompany, String custPosition, String custPhone,
 			String custBirth, String custSex, String userId, String custDesc) {
-		//首先进行业务数据校验 ,例如校验手机号
 		CCustomer customer = customerDao.selectCCustomers(custPhone);
 		if(customer != null && !customer.getId().toString().equals(id)) {
 			return new Result(CodeMsg.CUSTOMER_PHONE_EXIST_ERROR);
@@ -48,7 +47,6 @@ public class CCustomerServiceImpl implements ICCustomerService {
 	public Result updateSales(Integer userId, List<Object> custIds) {
 		Integer[] custId = new Integer[custIds.size()];
 		custId = custIds.toArray(custId);
-		//批量修改客户的业务员
 		customerDao.updateSales(userId,custId);
 		return new Result();
 	}

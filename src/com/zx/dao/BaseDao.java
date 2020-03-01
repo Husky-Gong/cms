@@ -123,7 +123,7 @@ public class BaseDao {
 			int columnCount = metaData.getColumnCount();
 			while(rs.next()) {
 				//创建对象
-				T t = cls.newInstance();
+				T t = cls.getConstructor().newInstance();
 				//循环获取列的值  且为对象赋值
 				for (int i = 1; i <= columnCount; i++) {
 					//获取列的别名
