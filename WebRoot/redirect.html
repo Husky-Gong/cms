@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>重定向的HTML</title>
+</head>
+<body>
+<!-- 
+	由于没有登录  则会重定向到登录页面  
+	但是登录页面会在 iframe中显示,
+	而一般是在主页面进行显示登录页面
+	所以,使用当前页面作为跳板,通过当前页面获取
+	父页面对象,在父页面中使用js跳转到登录页面
+ -->
+ <script type="text/javascript">
+ 	parent.window.location.href="index.html";
+ </script>
+</body>
+</html>
