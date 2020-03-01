@@ -77,8 +77,7 @@ public class SysController extends HttpServlet {
 	protected void updateImg(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// get profile image
 		Part part = req.getPart("userImg");//注意 此时  userImg 的值 是 field 属性值
-		//获取当前用户
-		//从session中获取当前用户
+		//get current user from session
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute(Constant.KEY_CURRENT_USER);
 		if(obj == null) {
@@ -86,28 +85,26 @@ public class SysController extends HttpServlet {
 			RespWriter.writerJson(resp, rs);
 			return;
 		}
-		//转化为当前用户
+		// transfer type
 		CUser user = (CUser) obj;
-		//获取用户ID 
+		// get user id 
 		Integer userId = user.getId();
-		//图片后缀
-		String fileName = this.getFileName(part);//获取图片的真实名称
+		// get picture suffix
+		String fileName = this.getFileName(part);//get picture name
 		String suffix = this.getSuffix(fileName);
-		String newFileName = userId + suffix;// 将用户ID 和文件后缀 组成文件名称
-		//将图片保存
+		String newFileName = userId + suffix;// get picture full name
+		// set saving path
 		String realPath = req.getServletContext().getRealPath(Constant.USER_IMG_FOLDER_NAME);
-		//文件的物理路径
 		String  filePath = realPath + File.separator + newFileName;
-		//图片的网络路径    
-		String imgUrl = Constant.USER_IMG_FOLDER_NAME + "/" + newFileName;//网络路径
-		System.out.println("物理路径:"+filePath);
-		System.out.println("网络路径:"+imgUrl);
-		//先修改数据库数据   然后再保存图像
+		String imgUrl = Constant.USER_IMG_FOLDER_NAME + "/" + newFileName;
+		System.out.println("absolute path:"+filePath);
+		System.out.println("url path:"+imgUrl);
+		//first update database then save image
 		Result rs = userService.updateImg(userId,imgUrl);
-		//更新头像成功
+		//get update image result
 		if(rs.getCode().equals(CodeMsg.SUCCESS.getCode())) {
 			try {
-				//进行图片保存
+				//save picture
 				part.write(filePath);
 			} catch (Exception e) {
 				rs = new Result(CodeMsg.SYS_USER_IMG_SAVE_ERROR);
@@ -115,20 +112,13 @@ public class SysController extends HttpServlet {
 				return;
 			}
 			rs.setData(imgUrl);
-			//修改session中  用户的img 属性值
+			//update user image url
 			user.setImg(imgUrl);
 		}
 		RespWriter.writerJson(resp, rs);
 	}
-	/**
-	 * @Title: getFileName
-	 * @author: Mr.T   
-	 * @date: 2020年2月28日 下午12:01:06 
-	 * @Description: 获取图片名称
-	 * @param part
-	 * @return
-	 * @return: String
-	 */
+
+	
 	private String  getFileName(Part part) {
 		// 由于文件的原名称 在请求头中
 		String header = part.getHeader("Content-Disposition");
@@ -140,15 +130,7 @@ public class SysController extends HttpServlet {
 		return name;
 	}
 	
-	/**
-	 * @Title: getSuffix
-	 * @author: Mr.T   
-	 * @date: 2020年2月28日 下午12:05:03 
-	 * @Description: 获取文件后缀
-	 * @param fileName
-	 * @return
-	 * @return: String
-	 */
+
 	private   String getSuffix(String fileName) {
 		int index = fileName.lastIndexOf(".");
 		return fileName.substring(index);
