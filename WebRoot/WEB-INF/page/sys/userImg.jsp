@@ -13,7 +13,7 @@
 		<p>
 			<img  src="${user.img}" style="width:200px;height:200px;border:1px solid #009688" id="userImg"  onerror="javascript:this.src='${pageContext.request.contextPath}/resources/image/user_icon.jpg';" />
 		</p>
-		<button class="layui-btn" id="btn-upload" style="margin-top: 20px;width:200px">上传图像</button>
+		<button class="layui-btn" id="btn-upload" style="margin-top: 20px;width:200px">Upload image</button>
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
 	<script type="text/javascript">
@@ -46,7 +46,7 @@
 						layer.msg(rs.msg);
 						return false;
 					}
-					layer.msg("图片修改成功");
+					layer.msg("Update profile successfully!");
 					//修改页面上  用户的头像
 					var imgUrl = rs.data;
 					//修改头像
