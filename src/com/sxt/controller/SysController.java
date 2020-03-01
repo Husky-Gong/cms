@@ -133,6 +133,7 @@ public class SysController extends HttpServlet {
 
 	private   String getSuffix(String fileName) {
 		int index = fileName.lastIndexOf(".");
+		System.out.println(index);
 		return fileName.substring(index);
 	}
 
