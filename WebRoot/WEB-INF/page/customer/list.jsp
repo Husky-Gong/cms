@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>客户列表</title>
+<title>Customer List</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css">
 </head>
 <body>
@@ -15,51 +15,51 @@
 		<!-- 一排3个 -->
 		<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">客户名称</label>
+				<label class="layui-form-label">Customer name</label>
 				<div class="layui-input-inline">
-					<input id="custName" class="layui-input" placeholder="客户名称" />
+					<input id="custName" class="layui-input" placeholder="Customer name" />
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">公司名称</label>
+				<label class="layui-form-label">Company</label>
 				<div class="layui-input-inline">
-					<input id="custCompany"  class="layui-input" placeholder="公司名称" />
+					<input id="custCompany"  class="layui-input" placeholder="Company" />
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">手机号</label>
+				<label class="layui-form-label">Tel number</label>
 				<div class="layui-input-inline">
-					<input id="custPhone"  class="layui-input" placeholder="手机号" />
+					<input id="custPhone"  class="layui-input" placeholder="Phone number" />
 				</div>
 			</div>
 		</div>
 		<!-- 一排3个 -->
 		<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">生日</label>
+				<label class="layui-form-label">Birthday</label>
 				<div class="layui-input-inline" style="width: 84px;">
-					<input id="minCustBirth" class="layui-input" placeholder="最小时间" style="padding-left:5px" />
+					<input id="minCustBirth" class="layui-input" placeholder="from" style="padding-left:5px" />
 				</div>
 				<div class="layui-form-mid">-</div>
 				<div class="layui-input-inline" style="width: 84px;">
-					<input id="maxCustBirth" class="layui-input" placeholder="最大时间" style="padding-left:5px"/>
+					<input id="maxCustBirth" class="layui-input" placeholder="to" style="padding-left:5px"/>
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">性别</label>
+				<label class="layui-form-label">Gender</label>
 				<div class="layui-input-inline">
 					<select id="custSex">
-						<option value="">性别</option>
-						<option value="1">男</option>
-						<option value="2">女</option>
+						<option value="">Gender</option>
+						<option value="1">Male</option>
+						<option value="2">Female</option>
 					</select>
 				</div>
 			</div>
 			<div class="layui-inline" >
-				<label class="layui-form-label">业务员</label>
+				<label class="layui-form-label">Operator</label>
 				<div class="layui-input-inline" >
 					<select id="userId">
-						<option value="">请选择业务员</option>
+						<option value="">Choose operator</option>
 						<%-- 
 							<c:forEach items="${users}" var="user">
 							<option value="${user.id}">${user.realName}</option>
@@ -70,7 +70,7 @@
 			</div>
 			<div class="layui-inline">
 				<div class="layui-input-inline" style="width: 90px;">
-					<button type="button" class="layui-btn" id="searchBtn"><i class="layui-icon layui-icon-search"></i>搜索</button>
+					<button type="button" class="layui-btn" id="searchBtn"><i class="layui-icon layui-icon-search"></i>Search</button>
 				</div>
 			</div>
 		</div>
@@ -81,14 +81,14 @@
 <!-- 头工具栏 -->
 <script type="text/html" id="headerBtns">
 	<div class="layui-btn-group">
-		<button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-1"></i>新增</button>
-		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="updateSales"><i class="layui-icon layui-icon-edit"></i>修改业务员</button>
+		<button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-1"></i>Add</button>
+		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="updateSales"><i class="layui-icon layui-icon-edit"></i>Change Operator</button>
 	</div>
 </script>
 <!-- 行工具栏 -->
 <script type="text/html" id="rowBtns">
-	<button class="layui-btn layui-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>
-	<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="visit"><i class="layui-icon layui-icon-chat"></i>拜访</button>
+	<button class="layui-btn layui-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>Edit</button>
+	<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="visit"><i class="layui-icon layui-icon-chat"></i>Visit</button>
 </script>
 
 <!-- 数据编辑的层 -->
@@ -98,59 +98,59 @@
 <form class="layui-form layui-form-pane" lay-filter="formFilter">
 	<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">客户名称:</label>
+				<label class="layui-form-label">Name</label>
 				<div class="layui-input-inline">
-					<input type="text" class="layui-input" name="custName" placeholder="客户名称" lay-verify="required" lay-reqText="客户名称不能为空" />
+					<input type="text" class="layui-input" name="custName" placeholder="Name" lay-verify="required" lay-reqText="Invalid name" />
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">所属公司:</label>
+				<label class="layui-form-label">Company</label>
 				<div class="layui-input-inline">
-					<input type="text" class="layui-input" name="custCompany" placeholder="所属公司" lay-verify="required" lay-reqText="所属公司不能为空" />
-				</div>
-			</div>
-	</div>
-	<div class="layui-form-item">
-			<div class="layui-inline">
-				<label class="layui-form-label">职位:</label>
-				<div class="layui-input-inline">
-					<input type="text" class="layui-input" name="custPosition" placeholder="客户职位" lay-verify="required" lay-reqText="客户职位不能为空" />
-				</div>
-			</div>
-			<div class="layui-inline">
-				<label class="layui-form-label">手机号:</label>
-				<div class="layui-input-inline">
-					<input type="text" class="layui-input" name="custPhone" placeholder="客户手机号" lay-verify="required|phone" lay-reqText="客户手机号不能为空" />
+					<input type="text" class="layui-input" name="custCompany" placeholder="Company" lay-verify="required" lay-reqText="Invalid company" />
 				</div>
 			</div>
 	</div>
 	<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">生日:</label>
+				<label class="layui-form-label">Position</label>
 				<div class="layui-input-inline">
-					<input type="text" class="layui-input" name="custBirth"  id="custBirth" placeholder="客户生日" lay-verify="required" lay-reqText="客户生日不能为空" readonly />
+					<input type="text" class="layui-input" name="custPosition" placeholder="position" lay-verify="required" lay-reqText="Invalid position" />
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">性别:</label>
+				<label class="layui-form-label">Tel number:</label>
 				<div class="layui-input-inline">
-					<input type="radio" class="layui-input" name="custSex" checked value="1" title="男" />
-					<input type="radio" class="layui-input" name="custSex"  value="2" title="女" />
+					<input type="text" class="layui-input" name="custPhone" placeholder="Tel number" lay-verify="required|phone" lay-reqText="Invalid phone number" />
 				</div>
 			</div>
 	</div>
 	<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">业务员:</label>
+				<label class="layui-form-label">Birthday:</label>
 				<div class="layui-input-inline">
-					<select name="userId" id="editUserId" lay-verify="required" lay-reqText="请选择业务员">
-						<option value="">请选择业务员</option>
+					<input type="text" class="layui-input" name="custBirth"  id="custBirth" placeholder="客户生日" lay-verify="required" lay-reqText="invalid birthday" readonly />
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">Gender:</label>
+				<div class="layui-input-inline">
+					<input type="radio" class="layui-input" name="custSex" checked value="1" title="Male" />
+					<input type="radio" class="layui-input" name="custSex"  value="2" title="Female" />
+				</div>
+			</div>
+	</div>
+	<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">Operator:</label>
+				<div class="layui-input-inline">
+					<select name="userId" id="editUserId" lay-verify="required" lay-reqText="Choose operator">
+						<option value="">Choose Operator</option>
 					</select>
 				</div>
 			</div>
 	</div>
 	<div class="layui-form-item">
-		<label class="layui-form-label">客户简介:</label>
+		<label class="layui-form-label">Introduction:</label>
 			<div class="layui-input-block">
 				<textarea name="custDesc" id="custDesc" style="width:512px"></textarea>
 			</div>
@@ -166,10 +166,10 @@
 <form class="layui-form layui-form-pane" lay-filter="formFilter">
 	<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">业务员:</label>
+				<label class="layui-form-label">Operator:</label>
 				<div class="layui-input-inline">
-					<select name="userId" id="editUserId" lay-verify="required" lay-reqText="请选择业务员">
-						<option value="">请选择业务员</option>
+					<select name="userId" id="editUserId" lay-verify="required" lay-reqText="Operator">
+						<option value="">Choose Operator</option>
 					</select>
 				</div>
 			</div>
@@ -186,7 +186,7 @@
 	<input name="id" type="hidden" />
 	<div class="layui-form-item">
 		<div class="layui-inline">
-			<label class="layui-form-label">客户:</label>
+			<label class="layui-form-label">Customer:</label>
 				<div class="layui-input-inline">
 					<input name="custName" class="layui-input" readonly />
 				</div>
@@ -194,7 +194,7 @@
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-inline">
-			<label class="layui-form-label">时间:</label>
+			<label class="layui-form-label">Date:</label>
 				<div class="layui-input-inline">
 					<input name="visitTime" id="visitTime"  class="layui-input" readonly />
 				</div>
@@ -277,23 +277,23 @@
 			},
 			cols:[[//数据表头
 				{type:'checkbox'},
-				{field:'id',title:'客户ID',width:'80'},
-				{field:'custName',title:'客户名称',width:'100'},
-				{field:'custCompany',title:'客户公司',width:'110'},
-				{field:'custPosition',title:'客户职位',width:'120'},
-				{field:'custPhone',title:'客户电话',width:'120'},
-				{field:'custBirth',title:'客户生日',width:'110'},
-				{field:'custSex',title:'客户性别',width:'90',style:"text-align:center",templet:function(d){
+				{field:'id',title:'Customer ID',width:'80'},
+				{field:'custName',title:'Name',width:'100'},
+				{field:'custCompany',title:'Company',width:'110'},
+				{field:'custPosition',title:'Position',width:'120'},
+				{field:'custPhone',title:'Telephone',width:'120'},
+				{field:'custBirth',title:'Birthday',width:'110'},
+				{field:'custSex',title:'Gender',width:'90',style:"text-align:center",templet:function(d){
 					if(d.custSex == 1){
-						return "<b style='color:green'>男</b>";
+						return "<b style='color:green'>Male</b>";
 					}else if(d.custSex == 2){
-						return "<b style='color:red'>女</b>";
+						return "<b style='color:red'>Female</b>";
 					}
 				}},
-				{field:'realName',title:'业务员',width:'110'},
-				{field:'createTime',title:'创建时间',width:'160'},
-				{field:'modifyTime',title:'修改时间',width:'160'},
-				{title:'操作',toolbar:'#rowBtns',fixed:'right',width:'270'}
+				{field:'realName',title:'Operator',width:'110'},
+				{field:'createTime',title:'CreateTime',width:'160'},
+				{field:'modifyTime',title:'Modify Time',width:'160'},
+				{title:'Operation',toolbar:'#rowBtns',fixed:'right',width:'270'}
 			]]
 		});
 		//搜索按钮事件
@@ -334,10 +334,10 @@
 		function add(){
 			layer.open({
 				type:1,//html
-				title:'编辑客户',
+				title:'Edit',
 				content:$("#editTpl").html(),//弹层内容
 				area:['780px','550px'],//宽高
-				btn:['确认','取消'],
+				btn:['Submit','Cancel'],
 				btnAlign:'c',//按钮居中
 				btn1:function(index,layero){//点击确认时触发的方法
 					//点击确认时 提交form表单 
@@ -383,7 +383,7 @@
 			var data = checkStatus.data;
 			//如果没有数据被选中 则提示要先选中数据
 			if(data == null || data.length == 0){
-				layer.alert("请先选中需要修改的数据",{icon:7});
+				layer.alert("Choose data to delete",{icon:7});
 				return false;
 			}
 			//获取所有的客户的ID
@@ -398,7 +398,7 @@
 				type:1,//html
 				content:$("#setSalesTpl").html(),//
 				area:['400px','400px'],
-				btn:['确认','取消'],
+				btn:['Confirm','Cancel],
 				btnAlign:'c',//按钮居中
 				btn1:function(index,layero){//点击确认时触发的方法
 					//点击确认时 提交form表单 
@@ -454,10 +454,10 @@
 		function edit(data){
 			layer.open({
 				type:1,//html
-				title:'编辑客户',
+				title:'edit customer',
 				content:$("#editTpl").html(),//弹层内容
 				area:['780px','550px'],//宽高
-				btn:['确认','取消'],
+				btn:['Confirm','Cancel'],
 				btnAlign:'c',//按钮居中
 				btn1:function(index,layero){//点击确认时触发的方法
 					//点击确认时 提交form表单 
@@ -503,11 +503,11 @@
 		function visit(data){
 			layer.open({
 				type:1,//html
-				title:'拜访客户',
+				title:'Visit',
 				content:$("#visitTpl").html(),//弹层内容
 				area:['500px','350px'],//宽高
 				offset:'t',//靠上方  因为时间控件存在BUG
-				btn:['确认','取消'],
+				btn:['Confirm','Cancel'],
 				btnAlign:'c',//按钮居中
 				btn1:function(index,layero){//点击确认时触发的方法
 					//点击确认时 提交form表单 
