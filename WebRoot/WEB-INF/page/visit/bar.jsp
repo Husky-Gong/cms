@@ -39,15 +39,15 @@
  	<div class="layui-form layui-form-pane" style="margin-top: 30px;margin-bottom: 20px">
  		<div class="layui-form-item">
  			<div class="layui-inline">
-	 			<label class="layui-form-label">时间:</label>
+	 			<label class="layui-form-label">Time:</label>
 	 			<div class="layui-input-inline">
-	 				<input class="layui-input" placeholder="开始时间" id="minVisitTime" />
+	 				<input class="layui-input" placeholder="from" id="minVisitTime" />
 	 			</div>
 	 			<div class="layui-form-mid">-</div>
 	 			<div class="layui-input-inline">
-	 				<input class="layui-input" placeholder="截止时间" id="maxVisitTime" />
+	 				<input class="layui-input" placeholder="to" id="maxVisitTime" />
 	 			</div>
-	 			<button class="layui-btn" id="searchBtn">查询</button>
+	 			<button class="layui-btn" id="searchBtn">Search</button>
  			</div>
  			
  		</div>
@@ -76,7 +76,7 @@
  		// 设置需要渲染的图表的参数
  	 	var opt = {
  	 			title:{//图表的标题
- 	 				text:"业务员拜访统计",
+ 	 				text:"Visit history",
  	 				textStyle:{
  	 					color:'#B03A5B',//主题文字颜色
  	 				},
@@ -88,7 +88,7 @@
  	 		        }
  	 		    },
  	 		   legend:{
- 	 			   data:['拜访量']
+ 	 			   data:['visit']
  	 		   },
  	 		    xAxis: {
  	 		            data: null
@@ -98,7 +98,7 @@
  	 		        },
  	 		    //系列    name: 就是系列名
  	 		    series:{
- 	 		            name: '拜访量',
+ 	 		            name: 'visit',
  	 		            type: 'bar',
  	 		            data: null
  	 		        }
